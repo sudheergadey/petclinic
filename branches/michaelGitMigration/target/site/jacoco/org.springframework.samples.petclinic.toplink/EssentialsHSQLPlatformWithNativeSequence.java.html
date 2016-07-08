@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>EssentialsHSQLPlatformWithNativeSequence.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">petclinic</a> &gt; <a href="index.source.html" class="el_package">org.springframework.samples.petclinic.toplink</a> &gt; <span class="el_source">EssentialsHSQLPlatformWithNativeSequence.java</span></div><h1>EssentialsHSQLPlatformWithNativeSequence.java</h1><pre class="source lang-java linenums">package org.springframework.samples.petclinic.toplink;
+
+import java.io.IOException;
+import java.io.Writer;
+
+import oracle.toplink.essentials.exceptions.ValidationException;
+import oracle.toplink.essentials.platform.database.HSQLPlatform;
+import oracle.toplink.essentials.queryframework.ValueReadQuery;
+
+/**
+ * Subclass of the TopLink Essentials default HSQLPlatform class, using native
+ * HSQLDB identity columns for id generation.
+ *
+ * &lt;p&gt;Necessary for PetClinic's default data model, which relies on identity
+ * columns: this is uniformly used across all persistence layer implementations
+ * (JDBC, Hibernate, and JPA).
+ *
+ * @author Juergen Hoeller
+ * @author &lt;a href=&quot;mailto:james.x.clark@oracle.com&quot;&gt;James Clark&lt;/a&gt;
+ * @since 1.2
+ */
+public class EssentialsHSQLPlatformWithNativeSequence extends HSQLPlatform {
+
+	private static final long serialVersionUID = -55658009691346735L;
+
+
+<span class="fc" id="L27">	public EssentialsHSQLPlatformWithNativeSequence() {</span>
+		// setUsesNativeSequencing(true);
+<span class="fc" id="L29">	}</span>
+
+	@Override
+	public boolean supportsNativeSequenceNumbers() {
+<span class="fc" id="L33">		return true;</span>
+	}
+
+	@Override
+	public boolean shouldNativeSequenceAcquireValueAfterInsert() {
+<span class="fc" id="L38">		return true;</span>
+	}
+
+	@Override
+	public ValueReadQuery buildSelectQueryForNativeSequence() {
+<span class="fc" id="L43">		return new ValueReadQuery(&quot;CALL IDENTITY()&quot;);</span>
+	}
+
+	@Override
+	public void printFieldIdentityClause(Writer writer) throws ValidationException {
+		try {
+<span class="nc" id="L49">			writer.write(&quot; IDENTITY&quot;);</span>
+		}
+<span class="nc" id="L51">		catch (IOException ex) {</span>
+<span class="nc" id="L52">			throw ValidationException.fileError(ex);</span>
+<span class="nc" id="L53">		}</span>
+<span class="nc" id="L54">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

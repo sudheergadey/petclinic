@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Visit.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">petclinic</a> &gt; <a href="index.source.html" class="el_package">org.springframework.samples.petclinic</a> &gt; <span class="el_source">Visit.java</span></div><h1>Visit.java</h1><pre class="source lang-java linenums">package org.springframework.samples.petclinic;
+
+import java.util.Date;
+
+/**
+ * Simple JavaBean domain object representing a visit.
+ *
+ * @author Ken Krebs
+ */
+public class Visit extends BaseEntity {
+
+	/** Holds value of property date. */
+	private Date date;
+
+	/** Holds value of property description. */
+	private String description;
+
+	/** Holds value of property pet. */
+	private Pet pet;
+
+
+	/** Creates a new instance of Visit for the current date */
+<span class="fc" id="L23">	public Visit() {</span>
+<span class="fc" id="L24">		this.date = new Date();</span>
+<span class="fc" id="L25">	}</span>
+
+
+	/** Getter for property date.
+	 * @return Value of property date.
+	 */
+	public Date getDate() {
+<span class="fc" id="L32">		return this.date;</span>
+	}
+
+	/** Setter for property date.
+	 * @param date New value of property date.
+	 */
+	public void setDate(Date date) {
+<span class="fc" id="L39">		this.date = date;</span>
+<span class="fc" id="L40">	}</span>
+
+	/** Getter for property description.
+	 * @return Value of property description.
+	 */
+	public String getDescription() {
+<span class="fc" id="L46">		return this.description;</span>
+	}
+
+	/** Setter for property description.
+	 * @param description New value of property description.
+	 */
+	public void setDescription(String description) {
+<span class="fc" id="L53">		this.description = description;</span>
+<span class="fc" id="L54">	}</span>
+
+	/** Getter for property pet.
+	 * @return Value of property pet.
+	 */
+	public Pet getPet() {
+<span class="fc" id="L60">		return this.pet;</span>
+	}
+
+	/** Setter for property pet.
+	 * @param pet New value of property pet.
+	 */
+	public void setPet(Pet pet) {
+<span class="fc" id="L67">		this.pet = pet;</span>
+<span class="fc" id="L68">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

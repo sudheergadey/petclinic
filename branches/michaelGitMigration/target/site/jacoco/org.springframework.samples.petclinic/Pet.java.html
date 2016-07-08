@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Pet.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">petclinic</a> &gt; <a href="index.source.html" class="el_package">org.springframework.samples.petclinic</a> &gt; <span class="el_source">Pet.java</span></div><h1>Pet.java</h1><pre class="source lang-java linenums">package org.springframework.samples.petclinic;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.support.MutableSortDefinition;
+import org.springframework.beans.support.PropertyComparator;
+
+/**
+ * Simple JavaBean business object representing a pet.
+ *
+ * @author Ken Krebs
+ * @author Juergen Hoeller
+ * @author Sam Brannen
+ */
+<span class="fc" id="L20">public class Pet extends NamedEntity {</span>
+
+	private Date birthDate;
+
+	private PetType type;
+
+	private Owner owner;
+
+	private Set&lt;Visit&gt; visits;
+
+
+	public void setBirthDate(Date birthDate) {
+<span class="fc" id="L32">		this.birthDate = birthDate;</span>
+<span class="fc" id="L33">	}</span>
+
+	public Date getBirthDate() {
+<span class="fc" id="L36">		return this.birthDate;</span>
+	}
+
+	public void setType(PetType type) {
+<span class="fc" id="L40">		this.type = type;</span>
+<span class="fc" id="L41">	}</span>
+
+	public PetType getType() {
+<span class="fc" id="L44">		return this.type;</span>
+	}
+
+	protected void setOwner(Owner owner) {
+<span class="fc" id="L48">		this.owner = owner;</span>
+<span class="fc" id="L49">	}</span>
+
+	public Owner getOwner() {
+<span class="fc" id="L52">		return this.owner;</span>
+	}
+
+	protected void setVisitsInternal(Set&lt;Visit&gt; visits) {
+<span class="fc" id="L56">		this.visits = visits;</span>
+<span class="fc" id="L57">	}</span>
+
+	protected Set&lt;Visit&gt; getVisitsInternal() {
+<span class="fc bfc" id="L60" title="All 2 branches covered.">		if (this.visits == null) {</span>
+<span class="fc" id="L61">			this.visits = new HashSet&lt;Visit&gt;();</span>
+		}
+<span class="fc" id="L63">		return this.visits;</span>
+	}
+
+	public List&lt;Visit&gt; getVisits() {
+<span class="fc" id="L67">		List&lt;Visit&gt; sortedVisits = new ArrayList&lt;Visit&gt;(getVisitsInternal());</span>
+<span class="fc" id="L68">		PropertyComparator.sort(sortedVisits, new MutableSortDefinition(&quot;date&quot;, false, false));</span>
+<span class="fc" id="L69">		return Collections.unmodifiableList(sortedVisits);</span>
+	}
+
+	public void addVisit(Visit visit) {
+<span class="fc" id="L73">		getVisitsInternal().add(visit);</span>
+<span class="fc" id="L74">		visit.setPet(this);</span>
+<span class="fc" id="L75">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

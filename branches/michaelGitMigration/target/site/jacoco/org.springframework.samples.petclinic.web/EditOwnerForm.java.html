@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>EditOwnerForm.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">petclinic</a> &gt; <a href="index.source.html" class="el_package">org.springframework.samples.petclinic.web</a> &gt; <span class="el_source">EditOwnerForm.java</span></div><h1>EditOwnerForm.java</h1><pre class="source lang-java linenums">
+package org.springframework.samples.petclinic.web;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.Clinic;
+import org.springframework.samples.petclinic.Owner;
+import org.springframework.samples.petclinic.validation.OwnerValidator;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+
+/**
+ * JavaBean Form controller that is used to edit an existing &lt;code&gt;Owner&lt;/code&gt;.
+ * 
+ * @author Juergen Hoeller
+ * @author Ken Krebs
+ * @author Arjen Poutsma
+ */
+@Controller
+@RequestMapping(&quot;/owners/{ownerId}/edit&quot;)
+@SessionAttributes(types = Owner.class)
+public class EditOwnerForm {
+
+	private final Clinic clinic;
+
+
+	@Autowired
+<span class="nc" id="L36">	public EditOwnerForm(Clinic clinic) {</span>
+<span class="nc" id="L37">		this.clinic = clinic;</span>
+<span class="nc" id="L38">	}</span>
+
+	@InitBinder
+	public void setAllowedFields(WebDataBinder dataBinder) {
+<span class="nc" id="L42">		dataBinder.setDisallowedFields(&quot;id&quot;);</span>
+<span class="nc" id="L43">	}</span>
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String setupForm(@PathVariable(&quot;ownerId&quot;) int ownerId, Model model) {
+<span class="nc" id="L47">		Owner owner = this.clinic.loadOwner(ownerId);</span>
+<span class="nc" id="L48">		model.addAttribute(owner);</span>
+<span class="nc" id="L49">		return &quot;owners/form&quot;;</span>
+	}
+
+	@RequestMapping(method = RequestMethod.PUT)
+	public String processSubmit(@ModelAttribute Owner owner, BindingResult result, SessionStatus status) {
+<span class="nc" id="L54">		new OwnerValidator().validate(owner, result);</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">		if (result.hasErrors()) {</span>
+<span class="nc" id="L56">			return &quot;owners/form&quot;;</span>
+		}
+		else {
+<span class="nc" id="L59">			this.clinic.storeOwner(owner);</span>
+<span class="nc" id="L60">			status.setComplete();</span>
+<span class="nc" id="L61">			return &quot;redirect:/owners/&quot; + owner.getId();</span>
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

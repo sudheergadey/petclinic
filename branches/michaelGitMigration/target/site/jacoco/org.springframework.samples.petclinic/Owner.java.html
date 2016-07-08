@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Owner.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">petclinic</a> &gt; <a href="index.source.html" class="el_package">org.springframework.samples.petclinic</a> &gt; <span class="el_source">Owner.java</span></div><h1>Owner.java</h1><pre class="source lang-java linenums">package org.springframework.samples.petclinic;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.support.MutableSortDefinition;
+import org.springframework.beans.support.PropertyComparator;
+import org.springframework.core.style.ToStringCreator;
+
+/**
+ * Simple JavaBean domain object representing an owner.
+ *
+ * @author Ken Krebs
+ * @author Juergen Hoeller
+ * @author Sam Brannen
+ */
+<span class="fc" id="L20">public class Owner extends Person {</span>
+
+	private String address;
+
+	private String city;
+
+	private String telephone;
+
+	private Set&lt;Pet&gt; pets;
+
+
+	public String getAddress() {
+<span class="fc" id="L32">		return this.address;</span>
+	}
+
+	public void setAddress(String address) {
+<span class="fc" id="L36">		this.address = address;</span>
+<span class="fc" id="L37">	}</span>
+
+	public String getCity() {
+<span class="fc" id="L40">		return this.city;</span>
+	}
+
+	public void setCity(String city) {
+<span class="fc" id="L44">		this.city = city;</span>
+<span class="fc" id="L45">	}</span>
+
+	public String getTelephone() {
+<span class="fc" id="L48">		return this.telephone;</span>
+	}
+
+	public void setTelephone(String telephone) {
+<span class="fc" id="L52">		this.telephone = telephone;</span>
+<span class="fc" id="L53">	}</span>
+
+	protected void setPetsInternal(Set&lt;Pet&gt; pets) {
+<span class="fc" id="L56">		this.pets = pets;</span>
+<span class="fc" id="L57">	}</span>
+
+	protected Set&lt;Pet&gt; getPetsInternal() {
+<span class="fc bfc" id="L60" title="All 2 branches covered.">		if (this.pets == null) {</span>
+<span class="fc" id="L61">			this.pets = new HashSet&lt;Pet&gt;();</span>
+		}
+<span class="fc" id="L63">		return this.pets;</span>
+	}
+
+	public List&lt;Pet&gt; getPets() {
+<span class="fc" id="L67">		List&lt;Pet&gt; sortedPets = new ArrayList&lt;Pet&gt;(getPetsInternal());</span>
+<span class="fc" id="L68">		PropertyComparator.sort(sortedPets, new MutableSortDefinition(&quot;name&quot;, true, true));</span>
+<span class="fc" id="L69">		return Collections.unmodifiableList(sortedPets);</span>
+	}
+
+	public void addPet(Pet pet) {
+<span class="fc" id="L73">		getPetsInternal().add(pet);</span>
+<span class="fc" id="L74">		pet.setOwner(this);</span>
+<span class="fc" id="L75">	}</span>
+
+	/**
+	 * Return the Pet with the given name, or null if none found for this Owner.
+	 *
+	 * @param name to test
+	 * @return true if pet name is already in use
+	 */
+	public Pet getPet(String name) {
+<span class="fc" id="L84">		return getPet(name, false);</span>
+	}
+
+	/**
+	 * Return the Pet with the given name, or null if none found for this Owner.
+	 *
+	 * @param name to test
+	 * @return true if pet name is already in use
+	 */
+	public Pet getPet(String name, boolean ignoreNew) {
+<span class="fc" id="L94">		name = name.toLowerCase();</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">		for (Pet pet : getPetsInternal()) {</span>
+<span class="pc bpc" id="L96" title="3 of 4 branches missed.">			if (!ignoreNew || !pet.isNew()) {</span>
+<span class="fc" id="L97">				String compName = pet.getName();</span>
+<span class="fc" id="L98">				compName = compName.toLowerCase();</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">				if (compName.equals(name)) {</span>
+<span class="fc" id="L100">					return pet;</span>
+				}
+			}
+<span class="nc" id="L103">		}</span>
+<span class="fc" id="L104">		return null;</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="nc" id="L109">		return new ToStringCreator(this)</span>
+
+		.append(&quot;id&quot;, this.getId())
+
+		.append(&quot;new&quot;, this.isNew())
+
+		.append(&quot;lastName&quot;, this.getLastName())
+
+		.append(&quot;firstName&quot;, this.getFirstName())
+
+		.append(&quot;address&quot;, this.address)
+
+		.append(&quot;city&quot;, this.city)
+
+		.append(&quot;telephone&quot;, this.telephone)
+
+		.toString();
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

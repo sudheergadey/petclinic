@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ClinicBindingInitializer.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">petclinic</a> &gt; <a href="index.source.html" class="el_package">org.springframework.samples.petclinic.web</a> &gt; <span class="el_source">ClinicBindingInitializer.java</span></div><h1>ClinicBindingInitializer.java</h1><pre class="source lang-java linenums">package org.springframework.samples.petclinic.web;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.samples.petclinic.Clinic;
+import org.springframework.samples.petclinic.PetType;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.support.WebBindingInitializer;
+import org.springframework.web.context.request.WebRequest;
+
+/**
+ * Shared WebBindingInitializer for PetClinic's custom editors.
+ *
+ * &lt;p&gt;Alternatively, such init-binder code may be put into
+ * {@link org.springframework.web.bind.annotation.InitBinder}
+ * annotated methods on the controller classes themselves.
+ *
+ * @author Juergen Hoeller
+ */
+<span class="nc" id="L24">public class ClinicBindingInitializer implements WebBindingInitializer {</span>
+
+	@Autowired
+	private Clinic clinic;
+
+	public void initBinder(WebDataBinder binder, WebRequest request) {
+<span class="nc" id="L30">		SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L31">		dateFormat.setLenient(false);</span>
+<span class="nc" id="L32">		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));</span>
+<span class="nc" id="L33">		binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));</span>
+<span class="nc" id="L34">		binder.registerCustomEditor(PetType.class, new PetTypeEditor(this.clinic));</span>
+<span class="nc" id="L35">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

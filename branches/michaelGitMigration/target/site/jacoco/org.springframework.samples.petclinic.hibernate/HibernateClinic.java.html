@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>HibernateClinic.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">petclinic</a> &gt; <a href="index.source.html" class="el_package">org.springframework.samples.petclinic.hibernate</a> &gt; <span class="el_source">HibernateClinic.java</span></div><h1>HibernateClinic.java</h1><pre class="source lang-java linenums">package org.springframework.samples.petclinic.hibernate;
+
+import java.util.Collection;
+
+import org.hibernate.SessionFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.Clinic;
+import org.springframework.samples.petclinic.Owner;
+import org.springframework.samples.petclinic.Pet;
+import org.springframework.samples.petclinic.PetType;
+import org.springframework.samples.petclinic.Vet;
+import org.springframework.samples.petclinic.Visit;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * Hibernate implementation of the Clinic interface.
+ *
+ * &lt;p&gt;The mappings are defined in &quot;petclinic.hbm.xml&quot;, located in the root of the
+ * class path.
+ *
+ * &lt;p&gt;Note that transactions are declared with annotations and that some methods
+ * contain &quot;readOnly = true&quot; which is an optimization that is particularly
+ * valuable when using Hibernate (to suppress unnecessary flush attempts for
+ * read-only operations).
+ *
+ * @author Juergen Hoeller
+ * @author Sam Brannen
+ * @author Mark Fisher
+ * @since 19.10.2003
+ */
+@Repository
+@Transactional
+public class HibernateClinic implements Clinic {
+
+	private SessionFactory sessionFactory;
+	
+	@Autowired
+<span class="nc" id="L41">	public HibernateClinic(SessionFactory sessionFactory) {</span>
+<span class="nc" id="L42">		this.sessionFactory = sessionFactory;</span>
+<span class="nc" id="L43">	}</span>
+
+	@Transactional(readOnly = true)
+	@SuppressWarnings(&quot;unchecked&quot;)
+	public Collection&lt;Vet&gt; getVets() {
+<span class="nc" id="L48">		return sessionFactory.getCurrentSession().createQuery(&quot;from Vet vet order by vet.lastName, vet.firstName&quot;).list();</span>
+	}
+
+	@Transactional(readOnly = true)
+	@SuppressWarnings(&quot;unchecked&quot;)
+	public Collection&lt;PetType&gt; getPetTypes() {
+<span class="nc" id="L54">		return sessionFactory.getCurrentSession().createQuery(&quot;from PetType type order by type.name&quot;).list();</span>
+	}
+
+	@Transactional(readOnly = true)
+	@SuppressWarnings(&quot;unchecked&quot;)
+	public Collection&lt;Owner&gt; findOwners(String lastName) {
+<span class="nc" id="L60">		return sessionFactory.getCurrentSession().createQuery(&quot;from Owner owner where owner.lastName like :lastName&quot;)</span>
+				.setString(&quot;lastName&quot;, lastName + &quot;%&quot;).list();
+	}
+
+	@Transactional(readOnly = true)
+	public Owner loadOwner(int id) {
+<span class="nc" id="L66">		return (Owner) sessionFactory.getCurrentSession().load(Owner.class, id);</span>
+	}
+
+	@Transactional(readOnly = true)
+	public Pet loadPet(int id) {
+<span class="nc" id="L71">		return (Pet) sessionFactory.getCurrentSession().load(Pet.class, id);</span>
+	}
+
+	public void storeOwner(Owner owner) {
+		// Note: Hibernate3's merge operation does not reassociate the object
+		// with the current Hibernate Session. Instead, it will always copy the
+		// state over to a registered representation of the entity. In case of a
+		// new entity, it will register a copy as well, but will not update the
+		// id of the passed-in object. To still update the ids of the original
+		// objects too, we need to register Spring's
+		// IdTransferringMergeEventListener on our SessionFactory.
+<span class="nc" id="L82">		sessionFactory.getCurrentSession().merge(owner);</span>
+<span class="nc" id="L83">	}</span>
+
+	public void storePet(Pet pet) {
+<span class="nc" id="L86">		sessionFactory.getCurrentSession().merge(pet);</span>
+<span class="nc" id="L87">	}</span>
+
+	public void storeVisit(Visit visit) {
+<span class="nc" id="L90">		sessionFactory.getCurrentSession().merge(visit);</span>
+<span class="nc" id="L91">	}</span>
+
+	public void deletePet(int id) throws DataAccessException {
+<span class="nc" id="L94">		Pet pet = loadPet(id);</span>
+<span class="nc" id="L95">		sessionFactory.getCurrentSession().delete(pet);</span>
+<span class="nc" id="L96">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

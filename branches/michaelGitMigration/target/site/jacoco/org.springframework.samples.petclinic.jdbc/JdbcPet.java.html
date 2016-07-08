@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JdbcPet.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">petclinic</a> &gt; <a href="index.source.html" class="el_package">org.springframework.samples.petclinic.jdbc</a> &gt; <span class="el_source">JdbcPet.java</span></div><h1>JdbcPet.java</h1><pre class="source lang-java linenums">package org.springframework.samples.petclinic.jdbc;
+
+import org.springframework.samples.petclinic.Pet;
+
+/**
+ * Subclass of Pet that carries temporary id properties which
+ * are only relevant for a JDBC implmentation of the Clinic.
+ *
+ * @author Juergen Hoeller
+ * @see SimpleJdbcClinic
+ */
+<span class="nc" id="L12">class JdbcPet extends Pet {</span>
+
+	private int typeId;
+
+	private int ownerId;
+
+
+	public void setTypeId(int typeId) {
+<span class="nc" id="L20">		this.typeId = typeId;</span>
+<span class="nc" id="L21">	}</span>
+
+	public int getTypeId() {
+<span class="nc" id="L24">		return this.typeId;</span>
+	}
+
+	public void setOwnerId(int ownerId) {
+<span class="nc" id="L28">		this.ownerId = ownerId;</span>
+<span class="nc" id="L29">	}</span>
+
+	public int getOwnerId() {
+<span class="nc" id="L32">		return this.ownerId;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

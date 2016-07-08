@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>UsageLogAspect.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">petclinic</a> &gt; <a href="index.source.html" class="el_package">org.springframework.samples.petclinic.aspects</a> &gt; <span class="el_source">UsageLogAspect.java</span></div><h1>UsageLogAspect.java</h1><pre class="source lang-java linenums">package org.springframework.samples.petclinic.aspects;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+
+/**
+ * Sample AspectJ annotation-style aspect that saves
+ * every owner name requested to the clinic.
+ *
+ * @author Rod Johnson
+ * @author Juergen Hoeller
+ * @since 2.0
+ */
+@Aspect
+<span class="fc" id="L19">public class UsageLogAspect {</span>
+
+<span class="fc" id="L21">	private int historySize = 100;</span>
+
+	// Of course saving all names is not suitable for
+	// production use, but this is a simple example.
+<span class="fc" id="L25">	private List&lt;String&gt; namesRequested = new ArrayList&lt;String&gt;(this.historySize);</span>
+
+
+	public synchronized void setHistorySize(int historySize) {
+<span class="fc" id="L29">		this.historySize = historySize;</span>
+<span class="fc" id="L30">		this.namesRequested = new ArrayList&lt;String&gt;(historySize);</span>
+<span class="fc" id="L31">	}</span>
+
+	@Before(&quot;execution(* *.findOwners(String)) &amp;&amp; args(name)&quot;)
+	public synchronized void logNameRequest(String name) {
+		// Not the most efficient implementation,
+		// but we're aiming to illustrate the power of
+		// @AspectJ AOP, not write perfect code here :-)
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">		if (this.namesRequested.size() &gt; this.historySize) {</span>
+<span class="nc" id="L39">			this.namesRequested.remove(0);</span>
+		}
+<span class="fc" id="L41">		this.namesRequested.add(name);</span>
+<span class="fc" id="L42">	}</span>
+
+	public synchronized List&lt;String&gt; getNamesRequested() {
+<span class="fc" id="L45">		return Collections.unmodifiableList(this.namesRequested);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

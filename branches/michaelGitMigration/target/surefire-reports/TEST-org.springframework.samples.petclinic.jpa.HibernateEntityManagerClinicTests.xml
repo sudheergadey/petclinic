@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="1.83" errors="0" skipped="0" tests="13" name="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests">
+<testsuite failures="0" time="3.032" errors="0" skipped="0" tests="13" name="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_79\jre\bin"/>
     <property name="java.vm.version" value="24.79-b02"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:/petclinic/petclinic/branches/michaelGitMigration"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\petclinic\petclinic\branches\michaelGitMigration"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -27,9 +27,9 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 7"/>
-    <property name="classworlds.conf" value="F:/SCM/apache-maven-3.3.3/bin/m2.conf"/>
+    <property name="classworlds.conf" value="F:\SCM\apache-maven-3.3.3\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_79\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Users\dell\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\dell\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Program Files\TortoiseSVN\bin;C:\Program Files\VisualSVN Server\bin;C:\Program Files\apache-maven-3.3.9-bin\apache-maven-3.3.9\bin;C:\Program Files\Java\jdk1.7.0_79;C:\Program Files (x86)\Skype\Phone;C:\Program Files (x86)\Java\jdk1.7.0_79\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_79\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\VisualSVN Server\bin;C:\Program Files\apache-maven-3.3.9-bin\apache-maven-3.3.9\bin;C:\Program Files\Java\jdk1.7.0_79\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Java\jdk1.7.0_79\bin;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="51.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -40,11 +40,11 @@
     <property name="java.specification.version" value="1.7"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="user.name" value="dell"/>
-    <property name="java.class.path" value="F:/SCM/apache-maven-3.3.3/boot/plexus-classworlds-2.5.2.jar"/>
+    <property name="java.class.path" value="F:\SCM\apache-maven-3.3.3\boot\plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_79\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher deploy"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean package"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -61,17 +61,17 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="1.67" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testUsageLogAspectIsInvoked"/>
-  <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testApplicationManaged"/>
-  <testcase time="0.02" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testGetPetTypes"/>
-  <testcase time="0.02" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testFindOwners"/>
-  <testcase time="0.02" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testInsertOwner"/>
-  <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testUpdateOwner"/>
-  <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testInsertVisit"/>
-  <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testBogusJpql"/>
-  <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testInsertPet"/>
-  <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testLoadPet"/>
+  <testcase time="2.732" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testUsageLogAspectIsInvoked"/>
+  <testcase time="0.09" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testUpdatePet"/>
+  <testcase time="0.05" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testInsertPet"/>
+  <testcase time="0.02" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testLoadPet"/>
   <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testLoadOwner"/>
-  <testcase time="0.02" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testGetVets"/>
-  <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testUpdatePet"/>
+  <testcase time="0.06" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testGetVets"/>
+  <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testBogusJpql"/>
+  <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testApplicationManaged"/>
+  <testcase time="0" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testGetPetTypes"/>
+  <testcase time="0.02" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testFindOwners"/>
+  <testcase time="0.01" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testInsertOwner"/>
+  <testcase time="0" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testUpdateOwner"/>
+  <testcase time="0.02" classname="org.springframework.samples.petclinic.jpa.HibernateEntityManagerClinicTests" name="testInsertVisit"/>
 </testsuite>

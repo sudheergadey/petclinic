@@ -1,0 +1,36 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+petclinic,org.springframework.samples.petclinic.util,EntityUtils,12,22,2,4,2,4,3,2,1,1
+petclinic,org.springframework.samples.petclinic.aspects,UsageLogAspect,5,39,1,1,1,10,1,4,0,4
+petclinic,org.springframework.samples.petclinic.aspects,AbstractTraceAspect,23,0,2,0,5,0,4,0,3,0
+petclinic,org.springframework.samples.petclinic.aspects,CallMonitoringAspect,118,0,4,0,22,0,9,0,7,0
+petclinic,org.springframework.samples.petclinic.toplink,EssentialsHSQLPlatformWithNativeSequence,9,12,0,0,5,5,1,4,1,4
+petclinic,org.springframework.samples.petclinic.jdbc,SimpleJdbcClinic,523,0,18,0,85,0,26,0,17,0
+petclinic,org.springframework.samples.petclinic.jdbc,SimpleJdbcClinic.new ParameterizedRowMapper() {...},28,0,0,0,6,0,2,0,2,0
+petclinic,org.springframework.samples.petclinic.jdbc,JdbcPet,17,0,0,0,7,0,5,0,5,0
+petclinic,org.springframework.samples.petclinic.jdbc,SimpleJdbcClinic.new ParameterizedRowMapper() {...},11,0,0,0,2,0,2,0,2,0
+petclinic,org.springframework.samples.petclinic.jdbc,SimpleJdbcClinic.JdbcPetRowMapper,38,0,0,0,8,0,2,0,2,0
+petclinic,org.springframework.samples.petclinic.validation,OwnerValidator,71,0,14,0,17,0,9,0,2,0
+petclinic,org.springframework.samples.petclinic.validation,PetValidator,30,0,6,0,7,0,5,0,2,0
+petclinic,org.springframework.samples.petclinic.validation,VisitValidator,13,0,2,0,4,0,3,0,2,0
+petclinic,org.springframework.samples.petclinic.hibernate,HibernateClinic,86,0,0,0,17,0,10,0,10,0
+petclinic,org.springframework.samples.petclinic,Vet,11,34,1,1,3,9,2,5,1,5
+petclinic,org.springframework.samples.petclinic,Specialty,0,3,0,0,0,1,0,1,0,1
+petclinic,org.springframework.samples.petclinic,Person,0,17,0,0,0,7,0,5,0,5
+petclinic,org.springframework.samples.petclinic,PetType,0,3,0,0,0,1,0,1,0,1
+petclinic,org.springframework.samples.petclinic,Pet,0,65,0,2,0,21,0,12,0,11
+petclinic,org.springframework.samples.petclinic,Owner,38,100,4,6,2,30,4,15,1,13
+petclinic,org.springframework.samples.petclinic,NamedEntity,3,10,0,0,1,4,1,3,1,3
+petclinic,org.springframework.samples.petclinic,BaseEntity,7,10,2,0,1,4,2,3,1,3
+petclinic,org.springframework.samples.petclinic,Vets,14,0,2,0,4,0,3,0,2,0
+petclinic,org.springframework.samples.petclinic,Visit,0,29,0,0,0,12,0,7,0,7
+petclinic,org.springframework.samples.petclinic.web,ClinicController,54,0,0,0,13,0,5,0,5,0
+petclinic,org.springframework.samples.petclinic.web,EditOwnerForm,53,0,2,0,14,0,5,0,4,0
+petclinic,org.springframework.samples.petclinic.web,ClinicBindingInitializer,35,0,0,0,7,0,2,0,2,0
+petclinic,org.springframework.samples.petclinic.web,AddPetForm,66,0,2,0,17,0,6,0,5,0
+petclinic,org.springframework.samples.petclinic.web,FindOwnersForm,73,0,6,0,18,0,7,0,4,0
+petclinic,org.springframework.samples.petclinic.web,PetTypeEditor,28,0,4,0,8,0,4,0,2,0
+petclinic,org.springframework.samples.petclinic.web,EditPetForm,79,0,2,0,18,0,7,0,6,0
+petclinic,org.springframework.samples.petclinic.web,VisitsAtomView,128,0,8,0,24,0,7,0,3,0
+petclinic,org.springframework.samples.petclinic.web,AddVisitForm,63,0,2,0,16,0,5,0,4,0
+petclinic,org.springframework.samples.petclinic.web,AddOwnerForm,52,0,2,0,14,0,5,0,4,0
+petclinic,org.springframework.samples.petclinic.jpa,EntityManagerClinic,23,79,0,0,7,16,2,8,2,8
